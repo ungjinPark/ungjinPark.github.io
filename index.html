@@ -2,71 +2,13 @@
 <html lang="ko">
 	<head>
 		<title>박웅진의 Github Page</title>
-		<style>
-			*{margin:0;padding:0;}
-			
-			html,body{
-				color:#fff;
-				background:linear-gradient(#00a,#000 30%);
-			}
-			
-			a{
-				color:rgba(255,255,255,.7);
-				text-decoration:none;
-			}
-			
-			header[aria-label="글로벌"]{
-				color:#fff;
-				background:linear-gradient(to right,#039,#0af,#ff0,#58f);
-				box-shadow:0 2px 2px 1px #000;
-				padding:1% 0;
-			}
-			
-			header[aria-label="로컬"]{
-				color:#fff;
-				height:3em;
-				background:linear-gradient(to right,#039,#0af,#58f);
-				box-shadow:inset 0 0 2px 1px #000;
-				margin:0 0 1%;
-			}
-			
-			header[aria-label="로컬"]>h2{
-				text-align:center;
-				background-color:rgba(0,0,0,0.6);
-				width:100%; height:100%; line-height:175%;
-			}
-			
-			.wrapper{
-				width:800px;
-				margin:0 auto;
-			}
-			
-			main h2{
-				width:50%;
-				border:solid 1px #000;
-				margin:0 auto;
-				padding:0 2%; text-align:center;
-			}
-			
-			section{
-				background-color:rgba(255,255,255,0.2);
-				border-radius:1.5rem;
-				padding:1% 0;
-				margin:1% 0;
-			}
-			
-			section>h3{
-				text-align:center;
-			}
-			
-			iframe{
-				background:linear-gradient(rgba(255,255,255,0.8),rgba(255,255,255,0.9),rgba(255,255,255,1) 30%);
-				display:block; margin:1% auto;
-				border:solid 2px #fff; border-radius:0.7rem;
-				padding:1%;
-				width:95%;
-			}
-		</style>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="./style/indexPC.css" />
+		<link rel="stylesheet" type="text/css" href="./style/indexMobile.css" />
+		<link rel="stylesheet" type="text/css" href="./style/TabLayout.css" />
+		<link id="Theme" rel="stylesheet" type="text/css" href="./style/Tab_DarkTheme.css" />
+		<script src="./src/TabClass.Pure.js"></script>
 	</head>
 	<body>
 		<header aria-label="글로벌">
@@ -76,7 +18,56 @@
 			<header aria-label="로컬">
 				<h2>예제 페이지 모음</h2>
 			</header>
-			<main>
+			<main class="main_content">
+				
+			</main>
+		</div>
+		<footer>
+			<div class="footer-content">
+			&copy; 2019, Ungjin Park, Accessibility Team of Nvisions
+					<table role="none">
+						<tr>
+							<td rowspan="2">
+								<strong>
+									연락처
+								</strong>
+							</td>
+							<td>
+								E-MAIL : ungjin312@kakao.com
+							</td>
+						</tr>
+						<tr>
+							<td>
+								카카오톡 : mstr312
+							</td>
+						</tr>
+						<tr>
+							<td>주소(사무실)</td>
+							<td>
+								<p>
+									<span class="address-text"></span><button class="change-address-form"></button>
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td>전화번호</td>
+							<td><strong>TEL:</strong> 02 - 313 - 9977</td>
+						</tr>
+					</table>
+				<script src="./src/address.js"></script>
+			</div>
+		</footer>
+		<script>
+			let main_tab=new Tab('main_tab','.main_content',
+			[//tab menu list
+				'CSS 예제','JS 예제'
+			],
+			[//TabPanel Content List
+				`
+					Comming Soon...!
+				`
+				,
+				`
 				<article>
 					<section>
 						<h3>요소 시작지점에 힌트 버튼으로 튜토리얼 제공하기</h3>
@@ -94,7 +85,9 @@
 						</iframe>
 					</section>
 				</article>
-			</main>
-		</div>
+				`
+			]
+			)
+		</script>
 	</body>
 </html>

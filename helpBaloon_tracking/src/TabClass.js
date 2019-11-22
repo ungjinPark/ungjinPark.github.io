@@ -74,7 +74,7 @@ class Tab{
 		
 		function hint_FollowPointer(e){
 			if(root.trackingToggleState == true){
-				TabLiveHint.style.top=(e.pageY-30)+'px';
+				TabLiveHint.style.top=(e.pageY-40)+'px';
 				TabLiveHint.style.left=(e.pageX-TabLiveHint.offsetWidth/2)+'px';
 			}
 		}
@@ -249,6 +249,7 @@ class Tab{
 					root.index=0;
 				}
 			})//Event Ends
+			
 			btnToggleTheme[i].addEventListener('click',function(){//Toggle Event for Dark and Light Theme Mode
 				for(let t=0; t<btnToggleTheme.length; t++){
 					if(btnToggleTheme[t].getAttribute('aria-label') == 'Turn Dark Mode'){
