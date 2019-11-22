@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<title>박웅진의 Github Page</title>
+		<style>
+			*{margin:0;padding:0;}
+			
+			html,body{
+				color:#fff;
+				background:linear-gradient(#00a,#000 30%);
+			}
+			
+			a{
+				color:rgba(255,255,255,.7);
+				text-decoration:none;
+			}
+			
+			header[aria-label="글로벌"]{
+				color:#fff;
+				background:linear-gradient(to right,#039,#0af,#ff0,#58f);
+				box-shadow:0 2px 2px 1px #000;
+				padding:1% 0;
+			}
+			
+			header[aria-label="로컬"]{
+				color:#fff;
+				height:3em;
+				background:linear-gradient(to right,#039,#0af,#58f);
+				box-shadow:inset 0 0 2px 1px #000;
+				margin:0 0 1%;
+			}
+			
+			header[aria-label="로컬"]>h2{
+				text-align:center;
+				background-color:rgba(0,0,0,0.6);
+				width:100%; height:100%; line-height:175%;
+			}
+			
+			.wrapper{
+				width:800px;
+				margin:0 auto;
+			}
+			
+			main h2{
+				width:50%;
+				border:solid 1px #000;
+				margin:0 auto;
+				padding:0 2%; text-align:center;
+			}
+			
+			section{
+				background-color:rgba(255,255,255,0.2);
+				border-radius:1.5rem;
+				padding:1% 0;
+				margin:1% 0;
+			}
+			
+			section>h3{
+				text-align:center;
+			}
+			
+			iframe{
+				background:linear-gradient(rgba(255,255,255,0.8),rgba(255,255,255,0.9),rgba(255,255,255,1) 30%);
+				display:block; margin:1% auto;
+				border:solid 2px #fff; border-radius:0.7rem;
+				padding:1%;
+				width:95%;
+			}
+		</style>
+	</head>
+	<body>
+		<header aria-label="글로벌">
+			<h1><a href="#">박웅진의 테스트 예제페이지</a></h1>
+		</header>
+		<div id="wrapper">
+			<header aria-label="로컬">
+				<h2>예제 페이지 모음</h2>
+			</header>
+			<main>
+				<article>
+					<section>
+						<h3>요소 시작지점에 힌트 버튼으로 튜토리얼 제공하기</h3>
+						<iframe src="./btn_help/index.html" height="450px">
+						</iframe>
+					</section>
+					<section>
+						<h3>요소 포커스 시 요소 위치 위에 튜토리얼 힌트 말풍선 제공하기</h3>
+						<iframe src="./helpBaloon/index.html" height="450px">
+						</iframe>
+					</section>
+					<section>
+						<h3>요소 포커스 시 마우스를 따라다니거나, 고정 위치에 나타나는 말풍선 제공하기</h3>
+						<iframe src="./helpBaloon_tracking/index.html" height="450px">
+						</iframe>
+					</section>
+				</article>
+			</main>
+		</div>
+	</body>
+</html>
