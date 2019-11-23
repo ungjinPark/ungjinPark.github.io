@@ -44,13 +44,14 @@
 	}
 
 	.footer-content{
+		padding:1em 0;
 		font-weight:bold;
 		text-align:center;
 	}
 
 	.footer-content table{
 		width:100vw;
-		font-size:100%; border-collapse:collapse;
+		font-size:60%; border-collapse:collapse;
 	}
 
 	.footer-content table td{
