@@ -13,6 +13,7 @@
 		</div>
 		<script>
 			const krSpeech=new SpeechSynthesisUtterance(document.querySelector('#speachIt').innerText);
+			krSpeech.lang='ko'
 			const clickMe=document.querySelector('#clickme');
 			clickMe.addEventListener('click',function(){
 				speechSynthesis.speak(krSpeech);
