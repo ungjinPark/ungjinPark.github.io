@@ -5,16 +5,22 @@
 		<meta charset="utf-8" />
 	</head>
 	<body>
+		<div role="region" aria-label="voice-fishing speech">
 		<button id="clickme">나를 눌러보세요</button>
 		<div id="speachIt" style="display:none;">
 			<h1>안녕하세요 배찬우 고객님? 고객님의 계좌에서 3680만 원이 인출되었습니다. 깜짝 놀라셨죠? 당황하지 마시고, 제 말에 귀를 기울여 보세요.</h1>
 			<p>고객님?, 아, 당황하지 않으셨다구요?</p>
 			<p>,아.. 당황하지 않으셨구나~</p>
 		</div>
+		</div>
 		<script>
-			const krSpeech=new SpeechSynthesisUtterance(document.querySelector('#speachIt').innerText);
-			krSpeech.lang='ko'
-			const clickMe=document.querySelector('#clickme');
+			const clickMe=document.querySelector('#clickme')
+			const speechIt=document.querySelector('#speachIt')
+			const krSpeech=new SpeechSynthesisUtterance(speechIt.innerText);
+			speechSynthesis.addEventListener('load',function(){
+				const Voices = speechSynthesis.getVoices();
+				return voices = Voices;
+			})
 			clickMe.addEventListener('click',function(){
 				speechSynthesis.speak(krSpeech);
 			})
