@@ -9,36 +9,52 @@
 		href="style/main.css" />
 	</head>
 	<body>
-		<main class="main-color red">
-			<div class="color-area red">
-				<section>
-				<h2>Red Section</h2>
-				<p>이곳은 빨강색 영역입니다.</p>
-				</section>
+		<nav class="scroll-nav">
+			<ul class="menu-list">
+				<button id="btn_close" aria-label="메뉴 닫기">X</button>
+				<li><button>Red Area</button></li>
+				<li><button>Green Area</button></li>
+				<li><button>Blue Area</button></li>
+				<li><button>Purple Area</button></li>
+			</ul>
+		</nav>
+		<div id="content-wrapper">
+			<header>
+				<button id="btn_openNav" aria-label="메뉴 열기">☰</button>
+				<h1>Colorful Scroll Page</h1>
+			</header>
+			<main class="main-color red">
+				<div class="color-area red">
+					<section>
+					<h2>Red Section</h2>
+					<p>이곳은 빨강색 영역입니다.</p>
+					</section>
+				</div>
+				<div class="color-area green">
+					<section>
+					<h2>Green Section</h2>
+					<p>이곳은 초록색 영역입니다.</p>
+					</section>
+				</div>		
+				<div class="color-area blue">
+					<section>
+					<h2>Blue Section</h2>
+					<p>이곳은 파란색 영역입니다.</p>
+					</section>
+				</div>
+				<div class="color-area purple">
+					<section>
+					<h2>Purple Section</h2>
+					<p>이곳은 보라색 영역입니다.</p>
+					</section>
+				</div>
+			</main>
+			<div class="sticky-foot-effect">
 			</div>
-			<div class="color-area green">
-				<section>
-				<h2>Green Section</h2>
-				<p>이곳은 초록색 영역입니다.</p>
-				</section>
-			</div>		
-			<div class="color-area blue">
-				<section>
-				<h2>Blue Section</h2>
-				<p>이곳은 파란색 영역입니다.</p>
-				</section>
-			</div>
-			<div class="color-area purple">
-				<section>
-				<h2>Purple Section</h2>
-				<p>이곳은 보라색 영역입니다.</p>
-				</section>
-			</div>
-		</main>
-		<div class="sticky-foot-effect"></div>
-		<footer class="footer-area">
-			이곳은 바닥글 영역입니다.
-		</footer>
+			<footer class="footer-area">
+				이곳은 바닥글 영역입니다.
+			</footer>
+		</div>
 		<script src="src/color_main.js"></script>
 	</body>
 </html>
