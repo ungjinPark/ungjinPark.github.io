@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>엘범형 원페이지 - beta v0.1</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="style/common.css" />
+	</head>
+	<body>
+		<div class="wrapper">
+			<main>
+			<nav class="scrollNav">
+				<button class="btnScroll toLeft" aria-label="왼쪽">◀</button>
+				<button class="btnScroll toRight"  aria-label="오른쪽">▶</button>
+				<button class="btnScroll toTop" aria-label="위">▲</button>
+				<button class="btnScroll toBottom"  aria-label="아래">▼</button>
+			</nav>
+				<div class="row no1">
+					<article class="art1">
+						<div class="contentgroup">
+						<h2>혼자 노력한 사람은 이 세상에 단 한 명도 없다</h2>
+						<p>혼자만의 노력으로 성공한 사람은 없숩니다.</p>
+						<p>사람들은 노력은 재능이라는 말을 합니다. 반은 맞고 반은 틀립니다.</p>
+						<p>노력하기 위한 방법을 잘 찾는 것이 재능이고, 노력 자체는 누구나 할 수 있습니다.</p>
+						<p>우리 성인들은 우리의 자식과 동생, 후배나 친구와 같은 타인에게 노력을 강요하는 것 보다</p>
+						<p>그들이 노력할 수 있는 환경을 만들어 주어야 합니다.</p>
+						</div>
+					</article>
+					<article class="art2">
+						<div class="contentgroup">
+						<h2>고통을 혼자 간직하는 것은 미련하다</h2>
+						<p>당신은 생각할 수 있는 지성과</p>
+						<p>사람들과 소통할 수 있는 입이 있습니다.</p>
+						<p>고통을 나누는 것은 상대방도 당신도 어렵습니다.</p>
+						<p>당신이 정말로 편하다고 생각되는 누군가에게..</p>
+						<p>당신의 고통을 얘기하고 덜어내세요.</p>
+						</div>
+					</article>
+					<article class="art3">
+						<div class="contentgroup">
+						<h2>후회하지 않는 사람따위 없다</h2>
+						<p>우리는 매 순간마다 선택의 기로에 놓입니다.</p>
+						<p>1초의 짧은 순간마저도 우리는 작고 보잘 것 없는</p>
+						<p>선택을 무의식적으로 하고 있습니다.</p>
+						<p>후회 없는 선택은 존재하지 않습니다.</p>
+						<p>그 어느것을 선택하더라도 작건 크건 후회는 있습니다.</p>
+						<p>선택은 당신의 몫이며, 당신의 선택에 만족하십시오.</p>
+						<p>만족감이 큰 만큼, 후회는 작아질 것입니다.</p>
+						</div>
+					</article>
+				</div>
+				<div class="row no2">
+					<article>
+					</article>
+					<article>
+					</article>
+					<article>
+					</article>
+				</div>
+				<div class="row no3">
+					<article class="art1">
+					</article>
+					<article>
+					</article>
+					<article>
+					</article>
+				</div>
+			</main>
+		</div>
+		<footer></footer><!--빈 태그로 둘 것-->
+	</body>
+	<script>
+		var ViewScroll=new ViewScroll();
+		function ViewScroll(){
+			var root=this;
+			this.currentRow=0;
+			this.currentCol=0;
+			this.rows=document.querySelectorAll('.row');
+			this.cols=this.rows[this.currentRow].querySelectorAll('article');
+			this.maxRow=this.rows.length;
+			this.maxCol=this.cols.length;
+			
+			this.goTop=document.querySelector('.btnScroll.toTop');
+			this.goBottom=document.querySelector('.btnScroll.toBottom');
+			this.goLeft=document.querySelector('.btnScroll.toLeft');
+			this.goRight=document.querySelector('.btnScroll.toRight');
+			
+			Object.defineProperty(this, 'moveHorizontal', {
+			  set:function (val){
+				if( val > this.maxCol-1 ){
+					return false;
+				}else if(val < 0 ){
+					return false;
+				}else{
+					//현재 칸 위치 설정
+					this.currentCol=val;
+					selecting(this.cols,this.currentCol);
+					//첫 칸 일 때
+					if(this.currentCol == 0){
+						(function(){
+							root.goLeft.setAttribute('disabled','true');
+						})();
+					}else if(this.currentCol != 0){
+						(function(){
+							root.goLeft.removeAttribute('disabled');
+						})()
+					}
+					
+					if(
+						(this.currentRow > 0) && 
+						(this.rows[this.currentRow-1].querySelectorAll('article')[val] == null)
+					){
+						root.goTop.setAttribute('disabled','true');
+					}else if(
+					(this.currentRow > 0) &&
+					(this.rows[this.currentRow-1].querySelectorAll('article')[val] != null)){
+						root.goTop.removeAttribute('disabled');
+					}
+					
+					//마지막 칸 일 때
+					if(this.currentCol == this.maxCol-1){
+						(function(){
+							root.goRight.setAttribute('disabled','true');
+						})();
+					}else if(this.currentCol !=  this.maxCol-1){
+						(function(){
+							root.goRight.removeAttribute('disabled');
+						})();
+					}
+					//현재 칸 보다 아래 줄의 칸이 적어서 이동할 수 없을 때
+					if(
+						(this.currentRow < this.maxRow-1) && 
+						(this.rows[this.currentRow+1].querySelectorAll('article')[val] == null)
+					){
+						root.goBottom.setAttribute('disabled','true');
+					}else{
+						root.goBottom.removeAttribute('disabled');
+					}
+				}
+			  }
+			});
+			
+			Object.defineProperty(this, 'moveVertical', {
+			  set:function (val){
+				if( val > this.maxRow-1 ){
+					return false;
+				}else if(val < 0 ){
+					return false;
+				}else{
+					//현재 줄 위치 설정
+					this.currentRow=val;
+					this.cols=this.rows[val].querySelectorAll('article');
+					this.maxCol=this.cols.length;
+					selecting(this.rows,this.currentRow);
+					selecting(this.cols,this.currentCol);
+					//첫 줄 일 때
+					if((this.currentRow == 0)){
+						(function(){
+							root.goTop.setAttribute('disabled','true');
+						})();
+					}else if( this.currentRow != 0){
+						(function(){
+							root.goTop.removeAttribute('disabled');
+						})();
+					}
+					//마지막 줄 일 때
+					if(this.currentRow == this.maxRow-1){
+						(function(){
+							root.goBottom.setAttribute('disabled','true');
+						})()
+					}else if(this.currentRow !=  this.maxRow-1){ 
+						(function(){
+							root.goBottom.removeAttribute('disabled');
+						})();
+					}
+				}
+			  }
+			});
+			
+			this.moveVertical=0;
+			this.moveHorizontal=0;
+			
+			this.goTop.addEventListener('click',function(){
+				root.moveVertical=(root.currentRow-1);
+				var x=root.cols[root.currentCol].offsetLeft;
+				var y=root.cols[root.currentCol].offsetTop;
+				document.body.scrollTo(x,y);
+			});
+			this.goBottom.addEventListener('click',function(){
+				root.moveVertical=(root.currentRow+1);
+				var x=root.cols[root.currentCol].offsetLeft;
+				var y=root.cols[root.currentCol].offsetTop;
+				document.body.scrollTo(x,y);
+			});
+			this.goLeft.addEventListener('click',function(){
+				root.moveHorizontal=(root.currentCol-1);
+				var x=root.cols[root.currentCol].offsetLeft;
+				var y=root.cols[root.currentCol].offsetTop;
+				document.body.scrollTo(x,y);
+			});
+			this.goRight.addEventListener('click',function(){
+				root.moveHorizontal=(root.currentCol+1);
+				var x=root.cols[root.currentCol].offsetLeft;
+				var y=root.cols[root.currentCol].offsetTop;
+				document.body.scrollTo(x,y);
+			});
+			
+			//아리아 히든
+			function selecting(el,c){
+				for(var i=0; i<el.length; i++){
+					if( el[i] == el[c] ){
+						el[i].setAttribute('aria-hidden','false');
+					}else{
+						el[i].setAttribute('aria-hidden','true');
+					}
+				}
+			}
+		}
+	</script>
+</html>

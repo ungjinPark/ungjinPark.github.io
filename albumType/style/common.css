@@ -1,0 +1,112 @@
+/*default set*/
+html,body{position:relative; width:100vw;height:100vh; overflow:hidden;}
+*{padding:0;margin:0;}ul{list-style:none;}a{display:inline-block;}
+.contentgroup::-webkit-scrollbar{display:none;}
+p{
+	margin:2% 0;
+}
+a:link{color:#60f;}a:visited{color:#40a;}
+body{font-size:1.3em; scroll-behavior:smooth;}
+/*layout*/
+
+
+
+main{width:300vw;height:100vh;}
+.row article{
+	float:left; position:relative;
+	width:100vw; height:100vh;
+	box-sizing:border-box; border:solid 1px #000;
+}
+.row{width:300vw;}
+main:after{content:"";display:block;clear:both;}
+
+.contentgroup{
+	width:80%; height:50%;
+	overflow:hidden; overflow-y:scroll;
+	-ms-overflow-style:none;
+	scrollbar-width:none;
+	background-color:rgba(0,0,0,0.5);
+	position:relative;
+	top:50%;
+	margin:0 auto;
+	transform:translateY(-50%);
+	padding:2%;
+}
+
+.btnScroll{
+	background-color:inherit; color:inherit;
+	position:fixed; display:inline-block;
+	font-size:2em; width:2em; height:2em; z-index:999;
+	border:solid 0.2em #000; box-sizing:border-box; border-radius:50%;
+	line-height:1em;}
+
+.btnScroll:disabled{
+	background-color:inherit; color:inherit;
+	opacity:0.3;
+}
+
+.btnScroll.toTop,.btnScroll.toBottom{left:50%;transform:translateX(-50%);}
+.btnScroll.toBottom{bottom:0;}
+
+.btnScroll.toLeft,.btnScroll.toRight{
+	top:50%; transform:translateY(-50%);
+}
+
+.btnScroll.toLeft{
+	left:0;
+}
+
+.btnScroll.toRight{
+	right:0;
+}
+
+/*article태그별 테마*/
+.row.no1 .art1{
+	color:#fff;
+	background:url('../img/a1.jpg');
+	background-size:150% 100%;
+	background-position:100%;
+}
+
+.row.no1 .art2{
+	color:#fff;
+	background:url('../img/a2.png');
+	background-size:100% 100%;
+	background-position:100%;
+}
+
+.row.no1 .art3{
+	color:#fff;
+	background:url('../img/a3.jpg');
+	background-size:100% 150%;
+	background-position:100%;
+}
+
+
+@media screen and (max-width:767px){
+	body{font-size:120%;}
+	.contentgroup{
+		width:65%; height:70%;
+		margin:25% auto 0;
+		transform:translateY(-70%);
+	}
+	.btnScroll{
+		font-size:2em;
+		width:1.5em; line-height:0;
+		height:1.5em;
+	}
+}
+
+@media screen and (max-width:1024px){
+	body{font-size:140%;}
+	.contentgroup{
+		width:65%; height:70%;
+		margin:25% auto 0;
+		transform:translateY(-75%);
+	}
+	.btnScroll{
+		font-size:2em;
+		width:1.5em; line-height:0;
+		height:1.5em;
+	}
+}
