@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>Modal Tutorial</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=yes" />
+	<link rel="stylesheet" href="style/main.css" />
+	<link rel="stylesheet" href="style/modal.css" />
+	<script src="src/modal.js"></script>
+</head>
+	<body>
+		<main>
+			<button class="myBtns" id="open_myModal">누르면 대화상자가 나타납니다.</button>
+		</main>
+	</body>
+	<script>
+		document.querySelector('#open_myModal').addEventListener('click',function(e){
+			showDialog({
+				Title:'Hello',
+				Content:'Welcome!',
+				EntryPoint:e.target
+			});
+			showDialog({
+				Title:'Hello2',
+				Content:'Welcome!',
+				EntryPoint:e.target,
+				Type:'confirm'
+			});
+			showDialog({
+				Title:'Hello3',
+				Content:'Welcome!',
+				EntryPoint:e.target,
+				Type:'ask'
+			});
+		})
+	</script>
+</html>
