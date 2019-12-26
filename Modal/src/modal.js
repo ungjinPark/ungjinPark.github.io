@@ -174,7 +174,6 @@ function showDialog(Obj){
 			}
 			if( c2<=count ){
 				clearInterval(itr);
-				currentStack[c2].Blocking(false);
 			}
 		}
 		})(c);
