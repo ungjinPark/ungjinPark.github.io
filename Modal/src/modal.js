@@ -168,6 +168,7 @@ function showDialog(Obj){
 		currentStack[c2]=new Dialog(Obj);
 		if( document.querySelector('.SimpleDialog-Overlay') == null ){
 			if( c2>=0 ){
+				currentStack[c2].Blocking(true);
 				currentStack[c2].show();
 				c++;
 			}
