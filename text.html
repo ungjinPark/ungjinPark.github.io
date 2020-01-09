@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>색상 조절</title>
+	<style>
+		.adjusted{
+			display:inline-block;
+			padding:1% 2%;
+			font-size:2em;
+			color:#0088cc;
+			background-color:#00afff;
+			color-adjust:exact;
+		}
+	</style>
+</head>
+<body>
+	<div class="adjusted" role="region" aria-label="hello0">
+		hello?
+	</div>
+	<div class="adjusted" role="region" aria-label="hello1">
+		hello?
+			<div class="adjusted" role="region" aria-label="hello1 child">
+			hello?
+				<div class="adjusted" role="region" aria-label="hello1 child's child">
+				hello?
+			</div>
+		</div>
+	</div>
+	<div class="adjusted" role="region" aria-label="hello2">
+		hello?
+	</div>
+	<div class="adjusted" role="region" aria-label="hello3">
+		hello?
+	</div>
+</body>
+</html>
