@@ -136,7 +136,7 @@ function Dialog(setDialog){
 			if(returnVal==true && returnVal != null){
 				setTimeout(function(){
 				root.DialogInfo.TrueEvent();
-				},100);
+				},200);
 			}
 			return returnVal=null;
 		}		
@@ -147,7 +147,7 @@ function Dialog(setDialog){
 			if(returnVal==false && returnVal != null){
 				setTimeout(function(){
 				root.DialogInfo.FalseEvent();
-				},100);
+				},200);
 			}
 			return returnVal=null;
 		}
