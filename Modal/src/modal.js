@@ -119,16 +119,7 @@ function Dialog(setDialog){
 		}
 	}
 	
-	root.focusReturn=function(){
-		if(typeof root.DialogInfo.EntryPoint!='undefined'){
-			root.DialogInfo.EntryPoint.focus()
-		}
-	}
-	
-	root.Close=function(){
-		document.body.removeChild(root.Element.DialogOverlay);
-		root.setActiveState=false;
-		root.Blocking(false);		
+	root.returnValue=function(){
 		if(
 		typeof root.DialogInfo.TrueEvent != 'undefined' &&
 		root.DialogInfo.TrueEvent instanceof Function == true
@@ -149,8 +140,19 @@ function Dialog(setDialog){
 				root.DialogInfo.FalseEvent();
 				},200);
 			}
-			return returnVal=null;
 		}
+	}
+	
+	root.focusReturn=function(){
+		if(typeof root.DialogInfo.EntryPoint!='undefined'){
+			root.DialogInfo.EntryPoint.focus()
+		}
+	}
+	
+	root.Close=function(){
+		document.body.removeChild(root.Element.DialogOverlay);
+		root.setActiveState=false;
+		root.Blocking(false);
 	}
 	
 	//Event	
@@ -158,33 +160,38 @@ function Dialog(setDialog){
 		if(e.keyCode == 27){
 			root.Close();
 			root.focusReturn();
-			return returnVal=root.returnVal=false;
+			setTimeout(function(){returnVal=root.returnVal=false;},100)
 		}
 	})
 	root.Element.ButtonSet.OK.addEventListener('click',function(){
+		setTimeout(function(){returnVal=root.returnVal=true;},100);
 		root.Close();
+		root.returnValue();
 		root.focusReturn();
-		return returnVal=root.returnVal=true;
 	})
 	root.Element.ButtonSet.Yes.addEventListener('click',function(){
+		setTimeout(function(){returnVal=root.returnVal=true;},20);
 		root.Close();
+		root.returnValue();
 		root.focusReturn();
-		return returnVal=root.returnVal=true;
 	})
 	root.Element.BtnWindowClose.addEventListener('click',function(){	
+		setTimeout(function(){returnVal=root.returnVal=false;},20)
 		root.Close();
+		root.returnValue();
 		root.focusReturn();
-		return returnVal=root.returnVal=false;
 	})
 	root.Element.ButtonSet.Cancel.addEventListener('click',function(){
 		root.Close();
 		root.focusReturn();
-		return returnVal=root.returnVal=false;
+		root.returnValue();
+		setTimeout(function(){returnVal=root.returnVal=false;},20);
 	})
 	root.Element.ButtonSet.No.addEventListener('click',function(){
 		root.Close();
 		root.focusReturn();
-		return returnVal=root.returnVal=false;
+		root.returnValue();
+		setTimeout(function(){returnVal=root.returnVal=false;},20);
 	});
 }
 var count=0;
