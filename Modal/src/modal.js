@@ -159,39 +159,39 @@ function Dialog(setDialog){
 	root.Element.DialogWindow.addEventListener('keydown',function(e){
 		if(e.keyCode == 27){
 			root.Close();
+			returnVal=false;
 			root.focusReturn();
-			setTimeout(function(){returnVal=root.returnVal=false;},100)
 		}
 	})
 	root.Element.ButtonSet.OK.addEventListener('click',function(){
-		setTimeout(function(){returnVal=root.returnVal=true;},100);
 		root.Close();
+		returnVal=true;
 		root.returnValue();
 		root.focusReturn();
 	})
 	root.Element.ButtonSet.Yes.addEventListener('click',function(){
-		setTimeout(function(){returnVal=root.returnVal=true;},20);
 		root.Close();
+		returnVal=true
 		root.returnValue();
 		root.focusReturn();
 	})
 	root.Element.BtnWindowClose.addEventListener('click',function(){	
-		setTimeout(function(){returnVal=root.returnVal=false;},20)
 		root.Close();
+		returnVal=false
 		root.returnValue();
 		root.focusReturn();
 	})
 	root.Element.ButtonSet.Cancel.addEventListener('click',function(){
 		root.Close();
+		returnVal=false;
 		root.focusReturn();
 		root.returnValue();
-		setTimeout(function(){returnVal=root.returnVal=false;},20);
 	})
 	root.Element.ButtonSet.No.addEventListener('click',function(){
 		root.Close();
+		returnVal=false;
 		root.focusReturn();
 		root.returnValue();
-		setTimeout(function(){returnVal=root.returnVal=false;},20);
 	});
 }
 var count=0;
