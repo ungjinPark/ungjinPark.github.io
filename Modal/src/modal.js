@@ -1,3 +1,4 @@
+var returnVal;
 function Dialog(setDialog){
 	var root=this;
 	Dialog.prototype.active=false;
@@ -30,7 +31,8 @@ function Dialog(setDialog){
 					OK:'OK',Cancel:'Cancel',Yes:'Yes',No:'No'
 				}
 			}
-		this.Element={
+		root.returnVal=null;
+		root.Element={
 			DialogOverlay:document.createElement('div'),
 			DialogWindow:document.createElement('div'),
 			DialogTitleBar:document.createElement('div'),
@@ -134,27 +136,34 @@ function Dialog(setDialog){
 		if(e.keyCode == 27){
 			root.Close();
 			root.focusReturn();
+			return root.returnVal=false;
 		}
 	})
 	root.Element.ButtonSet.OK.addEventListener('click',function(){
 		root.Close();
 		root.focusReturn();
+		returnVal=root.returnVal=true;
+		
 	})
 	root.Element.ButtonSet.Yes.addEventListener('click',function(){
 		root.Close();
 		root.focusReturn();
+		returnVal=returnVal=true;
 	})
 	root.Element.BtnWindowClose.addEventListener('click',function(){	
 		root.Close();
 		root.focusReturn();
+		returnVal=returnVal=false;
 	})
 	root.Element.ButtonSet.Cancel.addEventListener('click',function(){
 		root.Close();
 		root.focusReturn();
+		returnVal=returnVal=false;
 	})
 	root.Element.ButtonSet.No.addEventListener('click',function(){
 		root.Close();
 		root.focusReturn();
+		returnVal=root.returnVal=false;
 	});
 }
 var count=0;
