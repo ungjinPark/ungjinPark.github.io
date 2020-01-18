@@ -11,6 +11,7 @@
 	<body>
 		<main>
 			<button class="myBtns" id="open_myModal">누르면 대화상자가 나타납니다.</button>
+			<div class="testClass"></div>
 		</main>
 	</body>
 	<script>
@@ -24,7 +25,8 @@
 				Title:'Hello2',
 				Content:'Welcome!',
 				EntryPoint:e.target,
-				Type:'confirm'
+				Type:'confirm',
+				TrueEvent:function(){document.querySelector('.testClass').innerHTML="you selected a Yes or OK"}
 			});
 			showDialog({
 				Title:'Hello3',

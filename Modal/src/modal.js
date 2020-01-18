@@ -1,4 +1,4 @@
-var returnVal;
+var returnVal=null;
 function Dialog(setDialog){
 	var root=this;
 	Dialog.prototype.active=false;
@@ -129,6 +129,28 @@ function Dialog(setDialog){
 		document.body.removeChild(root.Element.DialogOverlay);
 		root.setActiveState=false;
 		root.Blocking(false);		
+		if(
+		typeof root.DialogInfo.TrueEvent != 'undefined' &&
+		root.DialogInfo.TrueEvent instanceof Function == true
+		){
+			if(returnVal==true && returnVal != null){
+				setTimeout(function(){
+				root.DialogInfo.TrueEvent();
+				},100);
+			}
+			return returnVal=null;
+		}		
+		if(
+			typeof root.DialogInfo.FalseEvent != 'undefined' &&
+			root.DialogInfo.FalseEvent instanceof Function == true
+		){
+			if(returnVal==false && returnVal != null){
+				setTimeout(function(){
+				root.DialogInfo.FalseEvent();
+				},100);
+			}
+			return returnVal=null;
+		}
 	}
 	
 	//Event	
@@ -136,34 +158,33 @@ function Dialog(setDialog){
 		if(e.keyCode == 27){
 			root.Close();
 			root.focusReturn();
-			return root.returnVal=false;
+			return returnVal=root.returnVal=false;
 		}
 	})
 	root.Element.ButtonSet.OK.addEventListener('click',function(){
 		root.Close();
 		root.focusReturn();
-		returnVal=root.returnVal=true;
-		
+		return returnVal=root.returnVal=true;
 	})
 	root.Element.ButtonSet.Yes.addEventListener('click',function(){
 		root.Close();
 		root.focusReturn();
-		returnVal=returnVal=true;
+		return returnVal=root.returnVal=true;
 	})
 	root.Element.BtnWindowClose.addEventListener('click',function(){	
 		root.Close();
 		root.focusReturn();
-		returnVal=returnVal=false;
+		return returnVal=root.returnVal=false;
 	})
 	root.Element.ButtonSet.Cancel.addEventListener('click',function(){
 		root.Close();
 		root.focusReturn();
-		returnVal=returnVal=false;
+		return returnVal=root.returnVal=false;
 	})
 	root.Element.ButtonSet.No.addEventListener('click',function(){
 		root.Close();
 		root.focusReturn();
-		returnVal=root.returnVal=false;
+		return returnVal=root.returnVal=false;
 	});
 }
 var count=0;
