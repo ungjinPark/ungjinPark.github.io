@@ -22,8 +22,9 @@ if(isContrastEnabled === undefined ){
 (function(){
 	contrast.innerHTML=`
 		html,body{color:#fff !important;background-color:#444 !important;border-color:#fff !important;}
+		body *{background-color:transparent !important;}
 		a:visited{color:#ea0 !important;}a:link{color:#0ff !important;}
-		.bind[role="alert"]{position:absolute !important; left:-9999px !important; z-index:-1 !important; color:transparent !important;}
+		[role="alert"] .blind{position:absolute !important; left:-9999px !important; z-index:-1 !important; color:transparent !important;}
 	`;
 	if( isContrastEnabled == false ){
 		body.appendChild(contrast);
