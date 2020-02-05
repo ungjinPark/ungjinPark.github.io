@@ -21,8 +21,9 @@ if(isContrastEnabled === undefined ){
 }
 (function(){
 	contrast.innerHTML=`
-		html{color:#fff;background-color:#444;border-color:#fff;}
-		a:visited{color:#ea0;}a:link{color:#0ff;}
+		html,body{color:#fff !important;background-color:#444 !important;border-color:#fff !important;}
+		a:visited{color:#ea0 !important;}a:link{color:#0ff !important;}
+		.bind[role="alert"]{position:absolute !important; left:-9999px !important; z-index:-1 !important; color:transparent !important;}
 	`;
 	if( isContrastEnabled == false ){
 		body.appendChild(contrast);
