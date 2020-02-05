@@ -22,8 +22,8 @@ if(isContrastEnabled === undefined ){
 (function(){
 	contrast.innerHTML=`
 		html,body{color:#fff !important;background-color:#444 !important;border-color:#fff !important;}
-		*{background-color:transparent !important; color:inherit !important; border-color:inherit !important; background-image:none;}
-		input,textarea,button{border-color:inherit  !important;color:inherit  !important; background-color:rgba(0,0,0,0.3) !important;}
+		*{background-color:transparent !important; color:inherit !important; border-color:inherit !important; background-image:none !important;}
+		input,textarea,button{border-color:inherit  !important;color:inherit  !important; background-color:rgba(0,0,0,0.3) !important; background-image:none !important;}
 		a:visited{color:#ea0 !important;}a:link{color:#0ff !important;}
 		[role="alert"] .blind{position:absolute !important; left:-9999px !important; z-index:-1 !important; color:transparent !important;}
 	`;
