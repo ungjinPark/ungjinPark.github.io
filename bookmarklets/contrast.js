@@ -23,6 +23,8 @@ if(isContrastEnabled === undefined ){
 	contrast.innerHTML=`
 		html,body{color:#fff !important;background-color:#444 !important;border-color:#fff !important;}
 		body>*{background-color:transparent !important;}
+		form,div,section,article,fieldset{background-color:rgba(0,0,0,0.2); color:#fff; border-color:inherit;}
+		input,text-area,button{border-color:inherit  !important;color:inherit  !important;background-color:inherit !important;}
 		a:visited{color:#ea0 !important;}a:link{color:#0ff !important;}
 		[role="alert"] .blind{position:absolute !important; left:-9999px !important; z-index:-1 !important; color:transparent !important;}
 	`;
