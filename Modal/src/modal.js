@@ -11,6 +11,32 @@ function Dialog(setDialog){
 		}
 	})
 	
+	Object.defineProperty(this,'EventListening',{
+		get:function(){
+			return (function(){
+				if(returnVal==true){
+					if(typeof root.DialogInfo.TrueEvent != 'undefined' && root.DialogInfo.TrueEvent instanceof Function == true){
+						setTimeout(function(){
+						root.DialogInfo.TrueEvent();
+						},200);
+					}
+				}
+				if(returnVal==false){
+					if(typeof root.DialogInfo.FalseEvent != 'undefined' && root.DialogInfo.FalseEvent instanceof Function == true){
+						setTimeout(function(){
+						root.DialogInfo.FalseEvent();
+						},200);
+					}
+				}
+				root.returnVal=null;
+			})();
+		},
+		set:function(val){
+			root.returnVal=val;
+			returnVal=root.returnVal;
+		}
+	})
+	
 	if(setDialog instanceof Object != true){
 		setDialog={}
 	}
@@ -119,30 +145,6 @@ function Dialog(setDialog){
 		}
 	}
 	
-	root.returnValue=function(){
-		if(
-		typeof root.DialogInfo.TrueEvent != 'undefined' &&
-		root.DialogInfo.TrueEvent instanceof Function == true
-		){
-			if(returnVal==true && returnVal != null){
-				setTimeout(function(){
-				root.DialogInfo.TrueEvent();
-				},200);
-			}
-			return returnVal=null;
-		}		
-		if(
-			typeof root.DialogInfo.FalseEvent != 'undefined' &&
-			root.DialogInfo.FalseEvent instanceof Function == true
-		){
-			if(returnVal==false && returnVal != null){
-				setTimeout(function(){
-				root.DialogInfo.FalseEvent();
-				},200);
-			}
-		}
-	}
-	
 	root.focusReturn=function(){
 		if(typeof root.DialogInfo.EntryPoint!='undefined'){
 			root.DialogInfo.EntryPoint.focus()
@@ -159,39 +161,41 @@ function Dialog(setDialog){
 	root.Element.DialogWindow.addEventListener('keydown',function(e){
 		if(e.keyCode == 27){
 			root.Close();
-			returnVal=false;
+			root.EventListening=false;
 			root.focusReturn();
+			root.EventListening=null;
 		}
 	})
 	root.Element.ButtonSet.OK.addEventListener('click',function(){
+		root.EventListening=true;
 		root.Close();
-		returnVal=true;
-		root.returnValue();
 		root.focusReturn();
+		root.EventListening=null;
 	})
 	root.Element.ButtonSet.Yes.addEventListener('click',function(){
+		root.EventListening=true;
 		root.Close();
-		returnVal=true
-		root.returnValue();
 		root.focusReturn();
+		root.EventListening=null;
+		
 	})
 	root.Element.BtnWindowClose.addEventListener('click',function(){	
+		root.EventListening=false;
 		root.Close();
-		returnVal=false
-		root.returnValue();
 		root.focusReturn();
+		root.EventListening=null;
 	})
 	root.Element.ButtonSet.Cancel.addEventListener('click',function(){
 		root.Close();
-		returnVal=false;
+		root.EventListening=false;
 		root.focusReturn();
-		root.returnValue();
+		root.EventListening=null;
 	})
 	root.Element.ButtonSet.No.addEventListener('click',function(){
+		root.EventListening=false;
 		root.Close();
-		returnVal=false;
 		root.focusReturn();
-		root.returnValue();
+		root.EventListening=null;
 	});
 }
 var count=0;
