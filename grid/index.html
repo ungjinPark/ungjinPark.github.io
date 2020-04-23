@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>그리드 레이아웃</title>
+    <script>
+        const local = localStorage;
+        if(!local.opacity){
+            local.opacity='overlay';
+        }
+    </script>
     <style>
         *{padding:0; margin:0; list-style:none; box-sizing:border-box;}
         html{background:url(https://cdn.pixabay.com/photo/2017/08/08/00/33/nature-2609647_960_720.jpg) no-repeat center;
@@ -150,8 +156,6 @@
     <script>
         const overlays=document.querySelectorAll('.opacity');
         const btnOpacity=document.querySelector('#btnOpacity');
-        const local = localStorage
-        local.opacity='overlay'
         btnOpacity.classList.add(local.opacity);
         for(let i=0; i<overlays.length; i++){
             overlays[i].classList.add(localStorage.opacity);
