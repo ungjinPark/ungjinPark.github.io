@@ -108,9 +108,42 @@
             border:solid 1px;
         }
 
+        button>.state{
+            color:var(--theme-point-color);
+        }
+
+        button.overlay:after{
+            content:'overlay';
+            color:#cff;
+            transition:opacity 0.3s, color 0.3s;
+            opacity:0.7;
+        }
+
+        button.opaque:after{
+            content:'opaque';
+            transition:opacity 0.3s, color 0.3s;
+            opacity:1;
+        }
+
         /* local(sub menu) */
         .local{font-size:1.2rem;}
         .local-list{display:flex; text-align:center; flex-flow:column;}.local-list>li{flex:1;}
+
+        @media screen and (min-width:10px) and (max-width:768px) and (orientation:portrait){
+            *{font-size:0.9rem;}
+
+            .wrap{
+                grid-auto-flow:row;
+            }
+
+            .wrap>nav{
+                grid-column: span 2;
+            }
+
+            .wrap main{
+                grid-column: span 4;
+            }
+        }
     </style>
 </head>
 <body>
