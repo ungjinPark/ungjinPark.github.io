@@ -9,6 +9,9 @@
         if(!local.opacity){
             local.opacity='overlay';
         }
+        if(!local.invert){
+            local.invert='normal';
+        }
     </script>
     <style>
         *{padding:0; margin:0; list-style:none; box-sizing:border-box;}
@@ -125,6 +128,25 @@
             opacity:1;
         }
 
+        .button.btnInvert{
+            animation:invert 1s 1;
+        }
+
+        button.normal:after{
+            content:'normal';
+            text-shadow:0 1px 1px #000;
+        }
+
+        button.inverted:after{
+            content:'inverted';
+            color:#000;
+            text-shadow:0 1px 1px #fff;
+        }
+
+        .wrap main.inverted, .wrap main.inverted *:not(img){
+            filter:invert(1);
+        }
+
         /* local(sub menu) */
         .local{font-size:1.2rem;}
         .local-list{display:flex; text-align:center; flex-flow:column;}.local-list>li{flex:1;}
@@ -160,7 +182,7 @@
         </header>
         <nav class="a11yFunctions opacity">
             <div class="container-label" id="functions-list-label">
-                Helper Menu for Aeccessibility
+                Helper Menu for Accessibility
             </div>
             <ul class="function-list" aria-labelledby="functions-list-label">
                 <li><button id="btnInvert">invert: </button></li>
@@ -177,7 +199,7 @@
                 <li>sub menu 3</li>
             </ul>
         </nav>
-        <main class="opacity">
+        <main class="opacity invert">
             <article>
                 <h1>Article</h1>
             </article>
@@ -188,15 +210,43 @@
     </div>
     <script>
         const overlays=document.querySelectorAll('.opacity');
+        const inverts=document.querySelectorAll('.invert');
         const btnOpacity=document.querySelector('#btnOpacity');
+        const btnInvert=document.querySelector('#btnInvert');
         btnOpacity.classList.add(local.opacity);
+        btnInvert.classList.add(local.invert);
         for(let i=0; i<overlays.length; i++){
             overlays[i].classList.add(localStorage.opacity);
+        }
+        for(let i=0; i<inverts.length; i++){
+            inverts[i].classList.add(localStorage.invert);
         }
 
         if(local.opacity=='opaque'){
             btnOpacity.click();
         }
+
+        if(local.opacity=='inverted'){
+            btnInvert.click();
+        }
+
+        btnInvert.addEventListener('click',function(){
+            if(local.invert === 'normal'){
+                local.invert='inverted';
+                btnInvert.classList.replace('normal',local.invert);
+            }else if(local.invert === 'inverted'){
+                local.invert='normal';         
+                btnInvert.classList.replace('inverted',local.invert);
+            }
+
+            for( let i=0; i<inverts.length; i++){
+                if(inverts[i].classList.contains('normal')){
+                    inverts[i].classList.replace('normal',local.invert);
+                }else if( inverts[i].classList.contains('inverted') ){
+                    inverts[i].classList.replace('inverted',local.invert);
+                }
+            }
+        })
 
         btnOpacity.addEventListener('click',function(){
             if(local.opacity === 'overlay'){
