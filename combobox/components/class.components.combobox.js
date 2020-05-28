@@ -7,11 +7,13 @@ class CustomSelect extends HTMLElement{
         this.focusedOption = -1;
         this.selectedElement = null;
         this.itemsCountToDisplay=3;
+        this.GroupCount;
     }
     __setEmbeddedElement__ ( root = this ) {
         //A Setting Statement about the butotn for interection with combobox
         root.controller = document.createElement('button');
         root.controller.setAttribute('role','combobox');
+        root.controller.setAttribute('aria-activedescendant','');
         root.prepend(root.controller);
         //A Setting Statement about the Listbox to show options to users.
         const Listbox = this.querySelectorAll('ul');
@@ -23,6 +25,9 @@ class CustomSelect extends HTMLElement{
         }else if( Listbox.length > 1 ){
             return console.error(new Error('Need only one unordered Listbox (ul) element. Please remove it all leave one.'));
         }
+        root.GroupElements=root.listbox.querySelectorAll('[role=group][aria-label]');
+        root.GroupCount=root.GroupElements.length;
+
         /* new SimpleBar(root.listbox,{scrollbarMinSize:5,scrollbarMaxSize:0}) */
         //A Setting Statement for the item elements that users will be able to browse a list and choose values.
         const optionItems = this.listbox.querySelectorAll('li');
@@ -115,7 +120,7 @@ class CustomSelect extends HTMLElement{
         
 
         //Events
-        const label = document.querySelector('label[for='+root.controller.id+']');
+        const label = document.querySelector('label[attachTo='+root.controller.id+']');
         if(label){
             label.id=this.id+'_label';
             root.controller.setAttribute('aria-labelledby',this.id+'_label '+this.id+'_focused')
@@ -203,9 +208,21 @@ class CustomSelect extends HTMLElement{
                 setTimeout(function(){
                     root.setDisplayList=true;
                 },10)
-                root.listbox.style.maxHeight=(root.optionItems[0].offsetHeight * root.itemsCountToDisplay)+'px';
-                root.controller.setAttribute('aria-activedescendant',root.id+'_focused');
-                root.optionItems[root.focusedOption].scrollIntoView();
+                root.setSelected=root.selectedIndex;
+                if(root.GroupCount > 0){
+                    root.listbox.style.maxHeight=(root.optionItems[0].offsetHeight * (root.itemsCountToDisplay+root.GroupCount))+'px';
+                }else{
+                    root.listbox.style.maxHeight=(root.optionItems[0].offsetHeight * root.itemsCountToDisplay)+'px';
+                }
+                setTimeout(function(){
+                    root.controller.setAttribute('aria-activedescendant',root.id+'_focused')
+                },50);
+                
+                if( root.focusedOption === 0 && root.GroupCount>0){
+                    root.GroupElements[0].scrollIntoView();
+                }else{
+                    root.optionItems[root.focusedOption].scrollIntoView();
+                }
             }
         }
 
@@ -256,6 +273,9 @@ class CustomSelect extends HTMLElement{
             if(root.focusedOption > 0){
                 root.setOptionExploreFocus = root.focusedOption-1;
                 opt[root.focusedOption].scrollIntoView();
+                if(root.focusedOption === 0 && root.GroupCount > 0 ){
+                    root.GroupElements[0].scrollIntoView();
+                }
             }
         }
         root.setSelect = 0;

@@ -1,95 +1,133 @@
 <!DOCTYPE html>
 <html lang="ko">
-	<head>
-		<title>박웅진의 Github Page</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
-		<link rel="stylesheet" type="text/css" href="./style/indexPC.css" />
-		<link rel="stylesheet" type="text/css" href="./style/indexMobile.css" />
-		<link rel="stylesheet" type="text/css" href="./style/TabLayout.css" />
-		<link id="Theme" rel="stylesheet" type="text/css" href="./style/Tab_DarkTheme.css" />
-		<script src="./src/TabClass.Pure.js"></script>
-	</head>
-	<body>
-		<header aria-label="글로벌">
-			<h1><a href="#">박웅진의 테스트 예제페이지</a></h1>
-		</header>
-		<div id="wrapper">
-			<header aria-label="로컬">
-				<h2>예제 페이지 모음</h2>
-			</header>
-			<main class="main_content">
-				
-			</main>
-		</div>
-		<footer>
-			<div class="footer-content">
-			&copy; 2019, Ungjin Park, Accessibility Team of Nvisions
-					<table role="none">
-						<tr>
-							<td rowspan="2">
-								<strong>
-									연락처
-								</strong>
-							</td>
-							<td>
-								E-MAIL : ungjin312@kakao.com
-							</td>
-						</tr>
-						<tr>
-							<td>
-								카카오톡 : mstr312
-							</td>
-						</tr>
-						<tr>
-							<td>주소(사무실)</td>
-							<td>
-								<p>
-									<span class="address-text"></span><button class="change-address-form"></button>
-								</p>
-							</td>
-						</tr>
-						<tr>
-							<td>전화번호</td>
-							<td><strong>TEL:</strong> 02 - 313 - 9977</td>
-						</tr>
-					</table>
-				<script src="./src/address.js"></script>
-			</div>
-		</footer>
-		<script src="https://ungjinpark.github.io/src/IE_Checker.js"></script>
-		<script>var IE_CHECKER=isIE();if(IE_CHECKER == true){location.href="https://ungjinpark.github.io/error/error_oldbrowser.html";}</script>
-		<script>
-			let main_tab=new Tab('main_tab','.main_content',
-			[//tab menu list
-				'CSS 예제','JS 예제'
-			],
-			[//TabPanel Content List
-				`
-					Comming Soon...!
-				`
-				,
-				`
-				<article>
-					<section>
-						<h3>요소 시작지점에 힌트 버튼으로 튜토리얼 제공하기</h3>
-						<iframe src="./btn_help/index.html" height="450px">
-						</iframe>
-					</section>
-					<section>
-						<h3>요소 포커스 시 요소 위치 위에 튜토리얼 힌트 말풍선 제공하기</h3>
-						<iframe src="./helpBaloon/index.html" height="450px">
-						</iframe>
-					</section>
-					<section>
-						<h3>요소 포커스 시 마우스를 따라다니거나, 고정 위치에 나타나는 말풍선 제공하기</h3>
-						<iframe src="./helpBaloon_tracking/index.html" height="450px">
-						</iframe>
-					</section>
-				</article>
-				`
-			]
-			)
-		</script>
-	</body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>콤보박스</title>
+    <style>
+        *{
+            margin: 0; padding:0;
+            box-sizing: border-box;
+        }
+
+        body{
+            font-size:2rem;
+        }
+
+        ul{list-style: none;}
+        label{display:inline; vertical-align:text-top;}
+        
+        select-box {
+            display:inline-flex;
+            margin:1rem; overflow:hidden; flex-flow:column;
+            justify-content: center; width:15rem;
+        }
+
+        select-box [role=combobox]{
+            border-radius:0.5rem; display:block; width:100%;
+            font-size:inherit; overflow:hidden; text-overflow: ellipsis; white-space: nowrap;
+            padding:0 1em; position:relative; border:none;
+            border:solid 0.01em #000; text-align: center;
+            min-height:1em; background-color: transparent;
+            user-select:none;
+        }
+
+        select-box [role="combobox"]:focus{
+            outline:none; box-shadow:inset 0.1rem 0.1rem 0.1rem;
+        }
+
+        select-box [role=combobox]:after{
+            content:''; position:absolute;
+            display:inline-block; right:2%;
+            top:50%; transform: translateY(-50%);
+            width:0.7em; height:0.7em;
+            align-self: center;
+        }
+
+        select-box [role=combobox][aria-expanded=false]:after{
+            background-image:url('http://a11y-nvisions.github.io/svg/down arrow.svg');
+        }
+
+        select-box [role=combobox][aria-expanded=true]:after{
+            background-image:url('http://a11y-nvisions.github.io/svg/up arrow.svg');
+        }
+
+        select-box [role=listbox]{
+            transition: all 0.3s;
+            border:solid 1px;
+        }
+
+        select-box [role=listbox], select-box [role=listbox]{
+            border-radius: 0.5rem;
+        }
+
+        [role=listbox] .simplebar-mask,[role=listbox] .simplebar-wrapper{
+            overflow:hidden; border-radius: 0.5rem;
+        }
+
+        [role=listbox] [role=group][aria-label]:before{
+            content:attr(aria-label); display:block;
+            font-weight: bold; text-align: center;
+        }
+
+        select-box [role=listbox].expanded{
+            min-height:1em; position: relative; z-index: 999; 
+            background-color:#fff;
+            visibility:visible;
+        }
+
+        select-box [role=listbox].collapsed{
+            min-height:0;
+            max-height:0; visibility:hidden;
+        }
+
+        select-box [role=option]{
+            user-select:none;
+            text-align: center;
+        }
+
+        [role=option].focused{
+            background-color: cornflowerblue;
+        }
+
+    </style>
+    <link rel="stylesheet"href="https://unpkg.com/simplebar@latest/dist/simplebar.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.min.js"></script>
+</head>
+<body>
+    <label attachTo="comfruit_controller">
+        Fruits
+    </label>
+    <select-box id="comfruit" size="5">
+        <div class="radius-wrap">
+            <ul data-simplebar>
+                <div role="group" aria-label="In Korea">
+                <li>Apple</li>
+                <li>Apricot</li>
+                <li>Fig</li>
+                <li>Grapes</li>
+                <li>Korean Melon</li>
+                <li>StrawBerry</li>
+                <li>Tangerine</li>
+                <li>Persimmon</li>
+                <li>Pear</li>
+                <li>Peach</li>
+                <li>Plum</li>
+                <li>Pomegranates</li>
+                <li>Watermelon</li>
+                </div>
+                <div role="group" aria-label="Tropical">
+                <li>Banana</li>
+                <li>Mango</li>
+                <li>Pineapple</li>
+                </div>
+            </ul>
+        </div>
+    </select-box>
+    <script src="components/class.components.combobox.js">
+    </script>
+    <script>
+
+    </script>
+</body>
 </html>

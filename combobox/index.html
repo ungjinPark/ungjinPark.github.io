@@ -25,8 +25,8 @@
 
         select-box [role=combobox]{
             border-radius:0.5rem; display:block; width:100%;
-            font-size:inherit; overflow:hidden; text-overflow: ellipsis; padding:0 1em;
-            position:relative; border:none;
+            font-size:inherit; overflow:hidden; text-overflow: ellipsis; white-space: nowrap;
+            padding:0 1em; position:relative; border:none;
             border:solid 0.01em #000; text-align: center;
             min-height:1em; background-color: transparent;
             user-select:none;
@@ -65,6 +65,11 @@
             overflow:hidden; border-radius: 0.5rem;
         }
 
+        [role=listbox] [role=group][aria-label]:before{
+            content:attr(aria-label); display:block;
+            font-weight: bold; text-align: center;
+        }
+
         select-box [role=listbox].expanded{
             min-height:1em; position: relative; z-index: 999; 
             background-color:#fff;
@@ -90,23 +95,63 @@
     <script src="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.min.js"></script>
 </head>
 <body>
-    <label for="fruit_controller">
-        Fruits List
+    <label attachTo="comfruit_controller">
+        Fruits
     </label>
-    <select-box id="fruit" size="5">
+    <select-box id="comfruit" size="5">
+        <div class="radius-wrap">
+            <ul data-simplebar>
+                <div role="group" aria-label="In Korea">
+                <li>Apple</li>
+                <li>Apricot</li>
+                <li>Fig</li>
+                <li>Grapes</li>
+                <li>Korean Melon</li>
+                <li>StrawBerry</li>
+                <li>Tangerine</li>
+                <li>Persimmon</li>
+                <li>Pear</li>
+                <li>Peach</li>
+                <li>Plum</li>
+                <li>Pomegranates</li>
+                <li>Watermelon</li>
+                </div>
+                <div role="group" aria-label="Tropical">
+                <li>Banana</li>
+                <li>Mango</li>
+                <li>Pineapple</li>
+                </div>
+            </ul>
+        </div>
+    </select-box>
+
+
+    <label attachTo="comfruit2_controller">
+        Fruits
+    </label>
+    <select-box id="comfruit2" size="5">
         <div class="radius-wrap">
             <ul data-simplebar>
                 <li>Apple</li>
-                <li>Banana</li>
-                <li>Orange</li>
+                <li>Apricot</li>
+                <li>Fig</li>
+                <li>Grapes</li>
+                <li>Korean Melon</li>
                 <li>StrawBerry</li>
-                <li>BlueBerry</li>
-                <li>RaspBerry</li>
+                <li>Tangerine</li>
+                <li>Persimmon</li>
+                <li>Pear</li>
+                <li>Peach</li>
+                <li>Plum</li>
+                <li>Pomegranates</li>
+                <li>Watermelon</li>
+                <li>Banana</li>
                 <li>Mango</li>
                 <li>Pineapple</li>
             </ul>
         </div>
     </select-box>
+
     <script src="components/class.components.combobox.js">
     </script>
     <script>
