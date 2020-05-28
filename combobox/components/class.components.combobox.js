@@ -200,7 +200,9 @@ class CustomSelect extends HTMLElement{
                 root.controller.setAttribute('aria-activedescendant','');
                 root.setDisplayList=false;
             }else if(!root.isExpanded){
-                root.setDisplayList=true;
+                setTimeout(function(){
+                    root.setDisplayList=true;
+                },10)
                 root.listbox.style.maxHeight=(root.optionItems[0].offsetHeight * root.itemsCountToDisplay)+'px';
                 root.controller.setAttribute('aria-activedescendant',root.id+'_focused');
                 root.optionItems[root.focusedOption].scrollIntoView();
