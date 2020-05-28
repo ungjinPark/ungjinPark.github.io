@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>콤보박스</title>
+    <style>
+        *{
+            margin: 0; padding:0;
+            box-sizing: border-box;
+        }
+
+        body{
+            font-size:2rem;
+        }
+
+        ul{list-style: none;}
+        label{display:inline; vertical-align:text-top;}
+        
+        select-box {
+            display:inline-flex;
+            margin:1rem; overflow:hidden; flex-flow:column;
+            justify-content: center; width:15rem;
+        }
+
+        select-box [role=combobox]{
+            border-radius:0.5rem; display:block; width:100%;
+            font-size:inherit; overflow:hidden; text-overflow: ellipsis; padding:0 1em;
+            position:relative; border:none;
+            border:solid 0.01em #000; text-align: center;
+            min-height:1em;
+            user-select:none;
+        }
+
+        select-box [role="combobox"]:focus{
+            outline:none; box-shadow:inset 0.1rem 0.1rem 0.1rem;
+        }
+
+        select-box [role=combobox]:after{
+            content:''; position:absolute;
+            display:inline-block; right:2%;
+            top:50%; transform: translateY(-50%);
+            width:0.7em; height:0.7em;
+            align-self: center;
+        }
+
+        select-box [role=combobox][aria-expanded=false]:after{
+            background-image:url('http://a11y-nvisions.github.io/svg/down arrow.svg');
+        }
+
+        select-box [role=combobox][aria-expanded=true]:after{
+            background-image:url('http://a11y-nvisions.github.io/svg/up arrow.svg');
+        }
+
+        select-box [role=listbox]{
+            transition: all 0.3s;
+            border:solid 1px;
+        }
+
+        select-box [role=listbox], select-box [role=listbox]{
+            border-radius: 0.5rem;
+        }
+
+        [role=listbox] .simplebar-mask,[role=listbox] .simplebar-wrapper{
+            overflow:hidden; border-radius: 0.5rem;
+        }
+
+        select-box [role=listbox].expanded{
+            min-height:1em; position: relative; z-index: 999; 
+            background-color:#fff;
+            visibility:visible;
+        }
+
+        select-box [role=listbox].collapsed{
+            min-height:0;
+            max-height:0; visibility:hidden;
+        }
+
+        select-box [role=option]{
+            user-select:none;
+            text-align: center;
+        }
+
+        [role=option].focused{
+            background-color: cornflowerblue;
+        }
+
+    </style>
+    <link rel="stylesheet"href="https://unpkg.com/simplebar@latest/dist/simplebar.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.min.js"></script>
+</head>
+<body>
+    <label for="fruit_controller">
+        Fruits List
+    </label>
+    <select-box id="fruit" size="5">
+        <div class="radius-wrap">
+            <ul data-simplebar>
+                <li>Apple</li>
+                <li>Banana</li>
+                <li>Orange</li>
+                <li>StrawBerry</li>
+                <li>BlueBerry</li>
+                <li>RaspBerry</li>
+                <li>Mango</li>
+                <li>Pineapple</li>
+            </ul>
+        </div>
+    </select-box>
+    <script src="components/class.components.combobox.js">
+    </script>
+    <script>
+
+    </script>
+</body>
+</html>
