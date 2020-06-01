@@ -53,12 +53,11 @@
         }
 
         select-box [role=listbox]{
-            transition: all 0.3s;
+            background-color:#fff;
+            transition: height 0.3s, max-height 0.3s, opacity 0.3s, visibility 0.3s;
             border:solid 1px;
-        }
-
-        select-box [role=listbox], select-box [role=listbox]{
             border-radius: 0.5rem;
+            position: absolute;
         }
 
         [role=listbox] .simplebar-mask,[role=listbox] .simplebar-wrapper{
@@ -71,13 +70,14 @@
         }
 
         select-box [role=listbox].expanded{
-            min-height:1em; position: relative; z-index: 999; 
-            background-color:#fff;
-            visibility:visible;
+            min-height:1em;
+            visibility:visible; position: absolute;
+            z-index:9999;
         }
 
         select-box [role=listbox].collapsed{
-            min-height:0;
+
+            min-height:0; opacity:0;
             max-height:0; visibility:hidden;
         }
 

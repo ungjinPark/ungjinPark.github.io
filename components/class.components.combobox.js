@@ -176,14 +176,14 @@ class CustomSelect extends HTMLElement{
                     if( e.button !== 0 ){
                         return false;
                     }else{
-                        const opt_idx=Array.prototype.indexOf.call(root.listbox.querySelectorAll('li'),opt[c]);
+                        const opt_idx=Array.prototype.indexOf.call(opt[c].parentElement.children,opt[c]);
                         root.setSelect=opt_idx;
                         toggleDisplayListHandler();
                     }
                 })
 
                 opt[c].addEventListener('mouseover',function(e){
-                    const opt_idx=Array.prototype.indexOf.call(root.listbox.querySelectorAll('li'),opt[c]);
+                    const opt_idx=Array.prototype.indexOf.call(opt[c].parentElement.children,opt[c]);
                     root.setOptionExploreFocus=opt_idx;
                 })
 
@@ -209,16 +209,12 @@ class CustomSelect extends HTMLElement{
                     root.setDisplayList=true;
                 },10)
                 root.setSelected=root.selectedIndex;
-                if(root.GroupCount > 0){
-                    root.listbox.style.maxHeight=(root.optionItems[0].offsetHeight * (root.itemsCountToDisplay+root.GroupCount))+'px';
-                }else{
-                    root.listbox.style.maxHeight=(root.optionItems[0].offsetHeight * root.itemsCountToDisplay)+'px';
-                }
+                root.listbox.style.maxHeight=(root.optionItems[0].offsetHeight * (root.itemsCountToDisplay+root.GroupCount))+'px';
                 setTimeout(function(){
                     root.controller.setAttribute('aria-activedescendant',root.id+'_focused')
                 },50);
                 
-                if( root.focusedOption === 0 && root.GroupCount>0){
+                if( root.focusedOption === 0 ){
                     root.GroupElements[0].scrollIntoView();
                 }else{
                     root.optionItems[root.focusedOption].scrollIntoView();
@@ -273,7 +269,7 @@ class CustomSelect extends HTMLElement{
             if(root.focusedOption > 0){
                 root.setOptionExploreFocus = root.focusedOption-1;
                 opt[root.focusedOption].scrollIntoView();
-                if(root.focusedOption === 0 && root.GroupCount > 0 ){
+                if(root.focusedOption === 0 ){
                     root.GroupElements[0].scrollIntoView();
                 }
             }
