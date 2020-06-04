@@ -136,7 +136,7 @@ class A11YSecurityScreenNumPad extends HTMLFormElement {
                     SecurityNumpadUiAnnouncement('assertive','보안 키패드 입력 도움말 종료')
                 }
             }
-            if(e.altKey && e.key === 'a' && root.mode === 1 ){
+            if(e.altKey && e.keyCode === 65 && root.mode === 1 ){
                 let ReadAll = '키패드 전체 읽기: ';
                 for(var i=0; i<numButtons.length; i++){
                     ReadAll+=numButtons[i].textContent;
