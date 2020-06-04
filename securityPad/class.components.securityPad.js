@@ -67,7 +67,7 @@ class A11YSecurityScreenNumPad extends HTMLFormElement {
                         }
                     },50)
                 }else{
-                    if(navigator.userAgent.indexOf('Firefox/' > -1 )){
+                    if(navigator.userAgent.indexOf('Firefox/') > -1 ){
                         root.controller.setAttribute('aria-label','보안 키패드, 입력된 글자 없음')
                         root.controller.focus();
                     }else{
@@ -87,7 +87,7 @@ class A11YSecurityScreenNumPad extends HTMLFormElement {
                     if( root.passwordInput.value.length < Number(root.passwordInput.getAttribute('maxlength')) ){
                         root.passwordInput.value+=this.textContent;
                         root.controller.focus();
-                        if(navigator.userAgent.indexOf('Firefox/' > -1 )){
+                        if(navigator.userAgent.indexOf('Firefox/') > -1 ){
                             root.controller.setAttribute('aria-label','보안 키패드, 비밀번호 '+root.passwordInput.value.length+'자리 입력됨')
                         }else{
                             SecurityNumpadUiAnnouncement('polite','비밀번호 '+root.passwordInput.value.length+'자리 입력됨')
@@ -119,7 +119,7 @@ class A11YSecurityScreenNumPad extends HTMLFormElement {
         //Set Labe For FIREFOX
         window.addEventListener('DOMContentLoaded',function(){
             setTimeout(function(){
-                if(navigator.userAgent.indexOf('Firefox/' > -1 )){
+                if(navigator.userAgent.indexOf('Firefox/') > -1 ){
                     root.controller.setAttribute('aria-label','보안 키패드, 비밀번호 '+root.passwordInput.value.length+'자리 입력됨')
                 }
             },100)
