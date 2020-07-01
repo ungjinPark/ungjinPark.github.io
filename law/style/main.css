@@ -1,0 +1,299 @@
+*{padding:0; margin:0; box-sizing:border-box;
+word-break: keep-all;
+word-wrap: break-word;
+}
+
+:root{
+    --current-color:#3f3c9a;
+}
+
+html{
+    width:100vw; height:100vh;
+    font-size:24px; position:relative;
+    overflow:hidden; letter-spacing: 0.05rem;
+    color:#000;
+}
+
+h1,h2,h3,h4,h5{
+    text-align:center;
+}
+
+body{
+    widtH:100%;height:100%;
+}
+
+ul{list-style:none;}
+
+.wrapper{
+    position:relative;
+    display:grid; width:100%; height:100%;
+    grid-auto-flow:row dense;
+    grid-template-rows:1fr 9fr;
+    grid-template-columns:2fr 8fr;
+}
+
+header{
+    display:flex;
+    grid-column:span 2;
+    align-items:center;
+    background-color:#0f1c3a;
+}
+
+header>*{
+    margin:0 1rem;
+}
+
+header #hamburger-menu{
+    position: relative;
+    border:none;
+    width:3rem; height:2rem;
+    display:block;
+    background:transparent;
+    display:none;
+    overflow:hidden;
+}.top-bread,.patty,.bottom-bread{
+    position: absolute; width:100%; height:15%;
+    background-color:#fff; transition:all 0.2s;
+    overflow:hidden; left:0; right:0;
+}
+
+
+.top-bread{
+    top:0;
+}.patty{
+    left:0; top:50%; transform:translateY(-50%);
+}.bottom-bread{
+    bottom:0;
+}
+
+.btnCloseIndexMenu .patty{
+    left:-3rem;
+    transition:all 0.2s;
+}
+
+.btnCloseIndexMenu .top-bread{
+    top:40%;
+    transform:rotate(45deg);
+}
+
+.btnCloseIndexMenu .bottom-bread{
+    top:40%; right:0;
+    transform:rotate(-45deg);
+}
+
+.titlebar{
+    width:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}.titlebar img{
+    margin-right:1rem;
+    filter:drop-shadow(0 0.2rem 1px #000);
+    width:10em;
+}.titlebar h1{color:#fff;}
+
+nav{
+padding:0.1rem;
+overflow:hidden;
+display:flex;
+align-items:center;
+background-color:rgba(174,200,255,0.4);
+}nav button{
+    appearance: none;
+    -webkit-appearance: none;
+    font-size:0.8rem;
+    border:none; background-color:transparent;
+    padding-left:0.1rem;
+}
+nav button:hover{cursor:pointer;}
+nav div.title{display:none;}
+nav button[aria-current="true"]{
+    font-weight:bold; color:#3f3c9a;
+    border-left:solid var(--current-color) 0.3rem;
+}
+
+nav>ul{
+    width:95%; margin:0 auto;
+}
+nav>ul .simplebar-offset{
+    width:100%;
+}
+.depth-lv2{padding-left:1rem;}
+.depth-lv2 button{font-size:0.9rem;}
+
+main{
+    grid-column: 2 / auto;
+    padding:1rem;
+    overflow:hidden;
+    height:100%;
+}
+
+.main-scroller{
+    display:block; overflow:hidden; overflow-y:auto;
+    height:100%;
+}
+
+.main-scroller .simplebar-offset{
+    position: relative;
+}.simplebar-content{overflow:hidden;}
+
+main ul>li{
+    margin:0.2rem 0;
+}
+
+.recent{
+font-weight:bold;
+}
+
+table.law-date{
+    width:50%;
+    text-align:center;
+    border-collapse:collapse;
+    margin:1.2rem auto;
+}
+
+.law-date td,.law-date th{
+    padding:1rem; border:solid 1px;
+}
+
+section{
+    margin:1rem;
+    padding:0.3rem;
+}
+
+section h1,
+section h2,
+section h3,
+section h4{
+    border-bottom:solid 0.1em; padding:0.1em;
+    display:inline-block;
+}
+
+aside{
+    margin:1rem;
+    padding:0.5rem 0;
+    padding-left:1rem;
+    border-left:0.2rem solid;
+    box-shadow:0 0 0.1rem #000,
+        0 0.1rem 0.1rem #000;
+}
+
+@media screen and (max-width:1024px){
+    html, body{
+        position:relative;
+        width:100vw; height:100vh;
+        font-size:20px;
+        overflow:hidden; letter-spacing: 0.05  rem;
+    }
+    .wrapper{
+        display:grid; width:100%; height:100%;
+        grid-auto-flow:row dense;
+        grid-template-rows:1fr 9fr;
+        grid-template-columns:1fr;
+    }
+
+    header{
+        position: relative;
+        z-index:998;
+    }
+
+    main,header{
+        grid-column: 1;
+    }
+
+    nav{
+        background-color:rgba(63,60,154,0.9);
+        text-align:center; z-index:10;
+        overflow:hidden;
+    }
+    nav div.title{
+        display:block;
+        color:#fff;
+    }
+    nav.hide{display:none;}
+    nav.show{display:grid; position: fixed; top:0; left:0; width:100vw; height:100vh; padding:1rem;
+        z-index:997;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 9fr;
+    }
+    nav.show button{
+        font-size:1.1rem;
+        color:#fff;
+    }
+    nav>ul{
+        overflow:auto;
+        overflow-x:hidden;
+        height:80%;
+    }
+
+    nav>ul .simplebar-offset{
+        width:100%;
+        height:100%;
+    }
+
+
+    header #hamburger-menu{
+        z-indeX:999;
+        display:inline-block;
+        width:2.5rem; height:1.5rem;
+    }
+
+    .titlebar{
+        flex-wrap:wrap;
+    }
+
+    .titlebar img{
+        width:4em;
+    }.titlebar h1{
+        font-size:0.9em;
+    }
+
+    section{
+        margin:1em auto;
+    }
+    
+    aside{
+        margin:1rem;
+        border-left:0.2rem solid;
+        box-shadow:0 0 0.1rem #000,
+        0 0.1rem 0.1rem #000;
+        box-sizing:content-box; padding:0.5rem 1rem 0.5rem 1rem;
+    }
+
+    .law-date{
+        width:80%;
+    }
+}
+
+
+
+@media screen and (prefers-color-scheme:dark){
+    :root{
+        --current-color:#8fcfff;
+    }
+    html,body{
+        color:#fff;
+        background-color:#1a2f4f;
+    }
+
+    nav{background-color:rgba(255,255,255,0.1)}
+
+    nav button{
+        color:#fff;
+    }
+
+    nav button[aria-current=true]{
+        color:#8fcfff;
+    }
+
+    aside{
+        background-color:rgba(150,200,255,0.2);
+    }
+}
+
+@media screen and (max-width:1024px) and (prefers-color-scheme:dark){
+    nav{background-color:rgba(0,0,0,0.9)}
+    nav .simplebar-scrollbar:before{
+        background-color:rgba(255,255,255,0.6);
+    }
+}   
