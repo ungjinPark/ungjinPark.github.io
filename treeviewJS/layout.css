@@ -30,7 +30,14 @@ ul,ol{
     z-index: 90;
     gap: 0.5rem;
     grid-template-columns: 40% 1fr;
+    user-select: none;
+    pointer-events: none;
 }
+
+.dummy-for-grid *{
+    pointer-events:all;
+}
+
 
 .wrapper.grid [role=tree]{
     width:100%;
