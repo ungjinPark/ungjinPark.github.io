@@ -1,0 +1,120 @@
+*{margin:0; padding:0; box-sizing:border-box;}
+html,body,.wrapper.grid{
+    width:100%;height:100%;
+    overflow: hidden;
+}
+
+.emphasis-must{
+    font-size:1.4rem;
+}.emphasis-should{
+    font-size:1.2rem;
+}.emphasis-ref{font-size:1rem;}
+.emphasis-ref::before{content:'\00AB';}
+.emphasis-ref:after{content:'\00BB';}
+
+ul,ol{
+    list-style-position: inside;
+}
+
+.wrapper.grid{
+    display: grid;
+    position: relative;
+    gap: 0.5rem;
+    grid-template-columns: 40% 1fr;
+}
+
+.remote-layer{
+    position: absolute;
+    display:grid;
+    width:100%; height:100%;
+    z-index: 90;
+    gap: 0.5rem;
+    grid-template-columns: 40% 1fr;
+}
+
+.wrapper.grid [role=tree]{
+    width:100%;
+    height: 100%;
+}
+.wrapper.grid .panels{
+    position: relative;
+    height:100%;
+    width:100%;
+}
+
+.wrapper.grid>.panels>*{
+    width:100%;
+}
+
+
+[aria-live].liveForA11y {
+    border: 0;clip: rect(0 0 0 0);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;
+}
+
+p,li:not([role=none]){
+    margin:0.2rem;
+}
+
+span.tabChar{
+    display:inline;
+    white-space:pre;
+}
+
+pre{
+    overflow: auto;
+}
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none){
+    .wrapper.grid{
+        display:-ms-grid;
+        width:100%; height:100%;
+        position:relative;
+        -ms-grid-columns: 4fr 6fr;
+        -ms-grid-rows:1fr;
+    }
+
+    .wrapper.grid>[role=tree]{
+        grid-column: 1;
+        -ms-grid-column: 1;
+        height:100%;
+    }
+
+    .wrapper.grid>.panels{
+        grid-column: 2;
+        -ms-grid-column: 2;
+        height:100%;
+        margin:1%;
+        
+    }
+}
+
+@media screen and (max-width:1024px){
+    html,.wrapper.grid,body{
+        width:100%;
+        height:100%;
+    }
+
+    .wrapper.grid{
+        grid-template-columns:80% auto;
+        gap: 0;
+    }
+
+    .remote-layer{
+        grid-template-columns:80% auto;
+        gap: 0;
+    }
+
+    .wrapper.grid>.panels{
+        width:100%;
+    }
+
+    .dummy-for-grid{
+        position: relative;
+        width:100%; height: 100%;
+    }
+
+    #treeOpen.floating-button{
+        position: absolute;
+        top:0; display:inline-block; width:1.5rem;
+    }
+}
