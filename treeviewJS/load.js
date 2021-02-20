@@ -32,10 +32,8 @@
         set:function(v){
             this.setAttribute('aria-expanded',v);
             var target = document.getElementById(this.getAttribute('aria-controls'))
-            var remote_layout_for_tree = document.getElementById('for-tree');
             if(this.hasAttribute('aria-controls') && target){
                 target.classList.toggle('hide',!this.expand_tree);
-                remote_layout_for_tree.classList.toggle('hide',!this.expand_tree)
             }
 
             if(!v){
